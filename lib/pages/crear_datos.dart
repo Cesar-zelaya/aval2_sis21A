@@ -28,12 +28,13 @@ class _nuevodatosState extends State<nuevodatos> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 20),
             Text(
               "Ingrese los datos del producto",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             TextFormField(
@@ -93,6 +94,11 @@ class _nuevodatosState extends State<nuevodatos> {
                     );
                   } catch (e) {
                     print("Error: $e");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Hubo un error al agregar los datos"),
+                      ),
+                    );
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -102,7 +108,13 @@ class _nuevodatosState extends State<nuevodatos> {
                   );
                 }
               },
-              child: Text("Guardar"),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+              ),
+              child: Text(
+                "Guardar",
+                style: TextStyle(fontSize: 18),
+              ),
             ),
           ],
         ),
