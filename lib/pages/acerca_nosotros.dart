@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
-class acercanosotros extends StatefulWidget {
-  const acercanosotros({Key? key}) : super(key: key);
-
-  @override
-  _acercanosotrosState createState() => _acercanosotrosState();
-}
-
-class _acercanosotrosState extends State<acercanosotros> {
+class acercanosotros extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +28,8 @@ class _acercanosotrosState extends State<acercanosotros> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Nombre: Hasell Nayeli'),
-                    Text('Apellido: Portillo Cubias'),
+                    Text('Nombre: Hasell-Nayeli'),
+                    Text('Apellido: Portillo-Cubias'),
                     Text('Correo: hasell@itca.edu.sv'),
                   ],
                 ),
@@ -59,8 +52,8 @@ class _acercanosotrosState extends State<acercanosotros> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Nombre: Cesar alejandro'),
-                    Text('Apellido:Zelaya Alvarado'),
+                    Text('Nombre: Cesar-Alejandro'),
+                    Text('Apellido: Zelaya-Alvarado'),
                     Text('Correo: zelaya@gmail.com'),
                   ],
                 ),
