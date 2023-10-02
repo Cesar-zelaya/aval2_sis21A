@@ -44,8 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
+          ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -54,15 +53,30 @@ class _MyHomePageState extends State<MyHomePage> {
                 refreshData();
               });
             },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.teal,
+              onPrimary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            child: Text('Agregar'),
           ),
-          IconButton(
-            icon: Icon(Icons.info),
+          ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => acercanosotros()),
               );
             },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.teal,
+              onPrimary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            child: Text('Acerca de nosotros'),
           ),
         ],
       ),
