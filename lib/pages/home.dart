@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'acerca_nosotros.dart';
 import 'crear_datos.dart';
 
@@ -21,7 +20,6 @@ class _MyHomePageState extends State<MyHomePage> {
     QuerySnapshot mensajes = await collectionReference.get();
     if (mensajes.docs.length != 0) {
       for (var doc in mensajes.docs) {
-        print(doc.data());
         chats.add(doc.data());
       }
     }
@@ -38,8 +36,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(widget.title),
+        backgroundColor: Colors.teal,
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -67,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         future: getMensajes(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -78,35 +81,50 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListView.builder(
               itemCount: snapshot.data?.length,
               itemBuilder: (context, index) {
+                final producto = snapshot.data?[index];
+
                 return Card(
                   elevation: 5,
                   margin: EdgeInsets.all(10),
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: ListTile(
                     title: Text(
-                      "${snapshot.data?[index]["nombre"]}",
-                      style: const TextStyle(
+                      "${producto["nombre"]}",
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                        color: Colors.teal,
                       ),
                     ),
-                    subtitle: Row(
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(Icons.attach_money, color: Colors.green),
-                        Text(
-                          "Precio: ${snapshot.data?[index]["precio"].toString()} | ",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
+                        Row(
+                          children: [
+                            Icon(Icons.attach_money, color: Colors.green),
+                            Text(
+                              "Precio: \$${producto["precio"].toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
-                        Icon(Icons.store, color: Colors.orange),
-                        Text(
-                          "Stock: ${snapshot.data?[index]["stock"].toString()}",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
+                        Row(
+                          children: [
+                            Icon(Icons.store, color: Colors.orange),
+                            Text(
+                              "Stock: ${producto["stock"].toString()} unidades",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -115,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             );
           } else {
-            return const Center(
+            return Center(
               child: Text('No hay datos disponibles.'),
             );
           }
@@ -124,7 +142,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: refreshData,
         tooltip: 'Refresh',
-        child: const Icon(Icons.refresh),
+        backgroundColor: Colors.teal,
+        child: Icon(Icons.refresh),
       ),
     );
   }
