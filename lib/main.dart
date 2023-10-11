@@ -1,7 +1,10 @@
 import 'package:aval2_sis21a/pages/crear_datos.dart';
 import 'package:aval2_sis21a/pages/home.dart';
+import 'package:aval2_sis21a/views/login_page.dart';
+import 'package:aval2_sis21a/views/sign_up_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +21,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/Crear': (context) => const nuevodatos(),
+        "/home": (context) => const MyHomePage(title: 'Bienvenido'),
+        "/login":(context) => const LoginPage(),
+        "/signup":(context) => const SignUpPage(),
+
       },
       theme: ThemeData(
 

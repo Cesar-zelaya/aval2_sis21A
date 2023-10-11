@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'acerca_nosotros.dart';
 import 'crear_datos.dart';
@@ -78,6 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: Text('Acerca de nosotros'),
           ),
+          IconButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushNamed(context, "/login");
+              },
+            icon: const Icon(Icons.close)
+          )
         ],
       ),
       body: FutureBuilder(
